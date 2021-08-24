@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Homework_SkillTree.Models;
 
 namespace Homework_SkillTree.Controllers
 {
@@ -10,7 +11,17 @@ namespace Homework_SkillTree.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            string[] categoryArray = new string[] { "支出", "收入" };
+            List<HistoryRecord> records = new List<HistoryRecord>();
+            for (int i = 1; i <= 100; i++)
+            {
+                HistoryRecord record = new HistoryRecord();
+                record.Money = i * 100 - 50;
+                record.Category = categoryArray[(i % 2)];
+                record.Date = DateTime.Now.AddDays(-i).ToString("yyyy-MM-dd");
+                records.Add(record);
+            }
+            return View(records);
         }
 
         public ActionResult About()

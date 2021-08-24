@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Homework_SkillTree.Models.HistoryRecord>
+@{
     ViewBag.Title = "Home Page";
     string labelClass = "col-sm-2 control-label";
     @* 下拉選單的options *@
@@ -16,7 +17,7 @@
             @Html.Label("category", "類別", new { @class = labelClass })
             <div class="col-sm-10">
                 @Html.DropDownList(
-                "category", (IEnumerable<SelectListItem>)selectList, 
+                "category", (IEnumerable<SelectListItem>)selectList,
                 new { @class = "form-control" }
                 )
             </div>
@@ -55,24 +56,15 @@
                 <th>日期</th>
                 <th>金額</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>支出</td>
-                <td>2016-01-01</td>
-                <td>300</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>支出</td>
-                <td>2016-01-02</td>
-                <td>1,600</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>支出</td>
-                <td>2016-01-03</td>
-                <td>8,00</td>
-            </tr>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@(i+1)</td>
+                    <td>@Model[i].Category</td>
+                    <td>@Model[i].Date</td>
+                    <td>@Model[i].Money</td>
+                </tr>
+            }
         </table>
     </div>
 </div>
