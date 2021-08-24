@@ -1,5 +1,4 @@
-﻿@model List<Homework_SkillTree.Models.HistoryRecord>
-@{
+﻿@{
     ViewBag.Title = "Home Page";
     string labelClass = "col-sm-2 control-label";
     @* 下拉選單的options *@
@@ -50,16 +49,7 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered table-hover">
-            @Html.Action("ShowRecordTitle", "Home")
-            @for (int i = 0; i < Model.Count; i++)
-            {
-                <tr>
-                    <td>@(i+1)</td>
-                    <td>@Model[i].Category</td>
-                    <td>@Model[i].Date</td>
-                    <td>@Model[i].Money</td>
-                </tr>
-            }
+            @Html.Action("ShowRecords", "Home")
         </table>
     </div>
 </div>

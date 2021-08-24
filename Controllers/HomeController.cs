@@ -11,31 +11,30 @@ namespace Homework_SkillTree.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult ShowRecords()
+        {
+            HistoryRecordModel historyRecordModel = new HistoryRecordModel();
+            string[] titleArray = new string[] { "#", "類別", "日期", "金額" };
+            historyRecordModel.IdTitle = titleArray[0];
+            historyRecordModel.CategoryTitle = titleArray[1];
+            historyRecordModel.DateTitle = titleArray[2];
+            historyRecordModel.MoneyTitle = titleArray[3];
+            historyRecordModel.Records = new List<RecordModel>();
+
             string[] categoryArray = new string[] { "支出", "收入" };
-            List<HistoryRecord> records = new List<HistoryRecord>();
             for (int i = 1; i <= 100; i++)
             {
-                HistoryRecord record = new HistoryRecord();
+                RecordModel record = new RecordModel();
                 record.Money = i * 100 - 50;
                 record.Category = categoryArray[(i % 2)];
                 record.Date = DateTime.Now.AddDays(-i).ToString("yyyy-MM-dd");
-                records.Add(record);
-            }
-            return View(records);
-        }
-
-        public ActionResult ShowRecordTitle()
-        {
-            List<RecordTitleModel> recordTitles = new List<RecordTitleModel>();
-            string[] categoryArray = new string[] { "#", "類別", "日期", "金額" };
-            for (int i = 0; i < categoryArray.Length; i++)
-            {
-                RecordTitleModel title = new RecordTitleModel();
-                title.Title = categoryArray[i];
-                recordTitles.Add(title);
+                historyRecordModel.Records.Add(record);
             }
 
-            return View(recordTitles);
+            return View(historyRecordModel);
         }
 
         public ActionResult About()

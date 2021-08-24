@@ -5,7 +5,10 @@ using System.Web;
 
 namespace Homework_SkillTree.Models
 {
-    public class HistoryRecord
+    /// <summary>
+    /// 記帳歷史紀錄
+    /// </summary>
+    public class RecordModel
     {
         public string Category { get; set; }
         public string Date { get; set; }
