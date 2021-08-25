@@ -11,6 +11,12 @@ namespace Homework_SkillTree.Controllers
     {
         public ActionResult Index()
         {
+            ViewData["category_option"] = new List<SelectListItem>()
+            {
+                new SelectListItem {Text = "請選擇", Value = "", Selected = true},
+                new SelectListItem {Text = "支出"},
+                new SelectListItem {Text = "收入"},
+            };
             return View();
         }
 

@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Models\RecordModel.cs" />
     <Compile Include="Models\HistoryRecordModel.cs" />
+    <Compile Include="Models\ViewModels\CashRecordFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
