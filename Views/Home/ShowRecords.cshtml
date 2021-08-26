@@ -15,7 +15,7 @@
     <tr>
         <td>@(i+1)</td>
         <td>@Model.Records[i].Category</td>
-        <td>@Model.Records[i].Date</td>
+        <td>@Model.Records[i].Date.ToString("yyyy-MM-dd")</td>
         <td>@Model.Records[i].Money</td>
     </tr>
 }

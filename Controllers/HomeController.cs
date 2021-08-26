@@ -36,7 +36,7 @@ namespace Homework_SkillTree.Controllers
                 RecordModel record = new RecordModel();
                 record.Money = i * 100 - 50;
                 record.Category = categoryArray[(i % 2)];
-                record.Date = DateTime.Now.AddDays(-i).ToString("yyyy-MM-dd");
+                record.Date = DateTime.Now.AddDays(-i);
                 historyRecordModel.Records.Add(record);
             }
 
