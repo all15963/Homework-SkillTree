@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Homework_SkillTree.Models;
+using Homework_SkillTree.Models.ViewModels;
 
 namespace Homework_SkillTree.Controllers
 {
@@ -11,36 +12,28 @@ namespace Homework_SkillTree.Controllers
     {
         public ActionResult Index()
         {
+            // 下拉選單選項
+            string[] categoryArray = new string[] { "支出", "收入" };
             ViewData["category_option"] = new List<SelectListItem>()
             {
                 new SelectListItem {Text = "請選擇", Value = "", Selected = true},
-                new SelectListItem {Text = "支出"},
-                new SelectListItem {Text = "收入"},
+                new SelectListItem {Text = categoryArray[0]},
+                new SelectListItem {Text = categoryArray[1]},
             };
-            return View();
-        }
 
-        public ActionResult ShowRecords()
-        {
-            HistoryRecordModel historyRecordModel = new HistoryRecordModel();
-            string[] titleArray = new string[] { "#", "類別", "日期", "金額" };
-            historyRecordModel.IdTitle = titleArray[0];
-            historyRecordModel.CategoryTitle = titleArray[1];
-            historyRecordModel.DateTitle = titleArray[2];
-            historyRecordModel.MoneyTitle = titleArray[3];
-            historyRecordModel.Records = new List<RecordModel>();
-
-            string[] categoryArray = new string[] { "支出", "收入" };
+            // 製作假資料list
+            List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
             for (int i = 1; i <= 100; i++)
             {
-                RecordModel record = new RecordModel();
-                record.Money = i * 100 - 50;
-                record.Category = categoryArray[(i % 2)];
-                record.Date = DateTime.Now.AddDays(-i);
-                historyRecordModel.Records.Add(record);
+                CashRecordFormViewModel record = new CashRecordFormViewModel();
+                record.money = i * 100 - 50;
+                record.category = categoryArray[(i % 2)];
+                record.date = DateTime.Now.AddDays(-i);
+                cashRecords.Add(record);
             }
+            ViewData["cash_records"] = cashRecords;
 
-            return View(historyRecordModel);
+            return View();
         }
 
         public ActionResult About()

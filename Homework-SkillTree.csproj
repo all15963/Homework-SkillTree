@@ -120,8 +120,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\RecordModel.cs" />
-    <Compile Include="Models\HistoryRecordModel.cs" />
     <Compile Include="Models\ViewModels\CashRecordFormViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,7 +167,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\ShowRecords.cshtml" />
+    <Content Include="Views\Home\_ShowRecords.cshtml" />
     <Content Include="Views\Home\_CashRecordForm.cshtml" />
   </ItemGroup>
   <ItemGroup>

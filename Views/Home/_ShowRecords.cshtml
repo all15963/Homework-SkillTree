@@ -1,0 +1,23 @@
+﻿@model Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel
+@using Homework_SkillTree.Models.ViewModels;
+
+@{
+    Layout = null;
+    List<CashRecordFormViewModel> cashRecords = (List<CashRecordFormViewModel>)ViewData["cash_records"];
+}
+
+<tr>
+    <th>@Html.DisplayNameFor(m => m.Id)</th>
+    <th>@Html.DisplayNameFor(m => m.category)</th>
+    <th>@Html.DisplayNameFor(m => m.date)</th>
+    <th>@Html.DisplayNameFor(m => m.money)</th>
+</tr>
+@for (int i = 0; i < cashRecords.Count; i++)
+{
+    <tr>
+        <td>@(i+1)</td>
+        <td>@cashRecords[i].category</td>
+        <td>@cashRecords[i].date.ToString("yyyy-MM-dd")</td>
+        <td>@cashRecords[i].money</td>
+    </tr>
+}

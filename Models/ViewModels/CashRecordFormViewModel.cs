@@ -12,13 +12,15 @@ namespace Homework_SkillTree.Models.ViewModels
     /// </summary>
     public class CashRecordFormViewModel
     {
-        [Display(Name="類別")]
+        [Display(Name = "#")]
+        public int Id { get; set; }
+        [Display(Name = "類別")]
         public string category { get; set; }
-        [Display(Name="金額")]
+        [Display(Name = "金額")]
         public int money { get; set; }
-        [Display(Name="日期")]
+        [Display(Name = "日期")]
         public DateTime date { get; set; }
-        [Display(Name="備註")]
+        [Display(Name = "備註")]
         public string description { get; set; }
     }
 }
