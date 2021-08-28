@@ -14,21 +14,24 @@ namespace Homework_SkillTree.Controllers
         {
             // 下拉選單選項
             string[] categoryArray = new string[] { "支出", "收入" };
-            ViewData["category_option"] = new List<SelectListItem>()
+            List<SelectListItem> selectListItems = new List<SelectListItem>()
             {
-                new SelectListItem {Text = "請選擇", Value = "", Selected = true},
-                new SelectListItem {Text = categoryArray[0]},
-                new SelectListItem {Text = categoryArray[1]},
+                new SelectListItem {Text = "請選擇", Value = "", Selected = true}
             };
+            foreach (string category in categoryArray)
+            {
+                selectListItems.Add(new SelectListItem { Text = category });
+            }
+            ViewData["category_option"] = selectListItems;
 
             // 製作假資料list
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
             for (int i = 1; i <= 100; i++)
             {
                 CashRecordFormViewModel record = new CashRecordFormViewModel();
-                record.money = i * 100 - 50;
-                record.category = categoryArray[(i % 2)];
-                record.date = DateTime.Now.AddDays(-i);
+                record.Money = i * 100 - 50;
+                record.Category = categoryArray[(i % 2)];
+                record.Date = DateTime.Now.AddDays(-i);
                 cashRecords.Add(record);
             }
             ViewData["cash_records"] = cashRecords;

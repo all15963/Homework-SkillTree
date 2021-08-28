@@ -15,12 +15,12 @@ namespace Homework_SkillTree.Models.ViewModels
         [Display(Name = "#")]
         public int Id { get; set; }
         [Display(Name = "類別")]
-        public string category { get; set; }
+        public string Category { get; set; }
         [Display(Name = "金額")]
-        public int money { get; set; }
+        public int Money { get; set; }
         [Display(Name = "日期")]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
         [Display(Name = "備註")]
-        public string description { get; set; }
+        public string Description { get; set; }
     }
 }
