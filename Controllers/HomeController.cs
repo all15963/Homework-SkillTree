@@ -34,9 +34,11 @@ namespace Homework_SkillTree.Controllers
                 record.Date = DateTime.Now.AddDays(-i);
                 cashRecords.Add(record);
             }
-            ViewData["cash_records"] = cashRecords;
 
-            return View();
+            CashFormListViewModel cashFormListViewModel = new CashFormListViewModel();
+            cashFormListViewModel.CashRecords = cashRecords;
+;
+            return View(cashFormListViewModel);
         }
 
         public ActionResult About()

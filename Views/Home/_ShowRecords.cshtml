@@ -1,4 +1,4 @@
-﻿@model Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel
+﻿@model Homework_SkillTree.Models.ViewModels.CashFormListViewModel
 @using Homework_SkillTree.Models.ViewModels;
 
 @{
@@ -7,17 +7,17 @@
 }
 
 <tr>
-    <th>@Html.DisplayNameFor(m => m.Id)</th>
-    <th>@Html.DisplayNameFor(m => m.Category)</th>
-    <th>@Html.DisplayNameFor(m => m.Date)</th>
-    <th>@Html.DisplayNameFor(m => m.Money)</th>
+    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
+    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
+    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
+    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
 </tr>
-@for (int i = 0; i < cashRecords.Count; i++)
+@for (int i = 0; i < Model.CashRecords.Count; i++)
 {
-    <tr>
-        <td>@(i+1)</td>
-        <td>@cashRecords[i].Category</td>
-        <td>@cashRecords[i].Date.ToString("yyyy-MM-dd")</td>
-        <td>@cashRecords[i].Money</td>
-    </tr>
+<tr>
+    <td>@(i+1)</td>
+    <td>@Model.CashRecords[i].Category</td>
+    <td>@Model.CashRecords[i].Date.ToString("yyyy-MM-dd")</td>
+    <td>@Model.CashRecords[i].Money</td>
+</tr>
 }
