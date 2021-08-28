@@ -1,8 +1,7 @@
 ﻿@model Homework_SkillTree.Models.ViewModels.CashFormListViewModel
 
 @{
-    @* 下拉選單的options *@
-    var categoryOptions = (IEnumerable<SelectListItem>)ViewData["category_option"];
+    Layout = null;
 }
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
@@ -11,7 +10,7 @@
         @Html.LabelFor(m => m.CashRecordForm.Category, htmlAttributes: new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.DropDownListFor(m => m.CashRecordForm.Category,
-            categoryOptions,
+            Model.SelectListItems,
             new { @class = "form-control" })
         </div>
     </div>

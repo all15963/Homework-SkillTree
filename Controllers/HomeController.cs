@@ -22,21 +22,23 @@ namespace Homework_SkillTree.Controllers
             {
                 selectListItems.Add(new SelectListItem { Text = category });
             }
-            ViewData["category_option"] = selectListItems;
 
             // 製作假資料list
+            Random random = new Random();
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
             for (int i = 1; i <= 100; i++)
             {
                 CashRecordFormViewModel record = new CashRecordFormViewModel();
-                record.Money = i * 100 - 50;
-                record.Category = categoryArray[(i % 2)];
+                record.Money = random.Next(minValue:100, maxValue:10000);
+                record.Category = categoryArray[(random.Next(maxValue: 100) % 2)];
                 record.Date = DateTime.Now.AddDays(-i);
                 cashRecords.Add(record);
             }
 
+            // 將假資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel();
             cashFormListViewModel.CashRecords = cashRecords;
+            cashFormListViewModel.SelectListItems = selectListItems;
 ;
             return View(cashFormListViewModel);
         }
