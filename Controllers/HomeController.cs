@@ -28,17 +28,21 @@ namespace Homework_SkillTree.Controllers
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
             for (int i = 1; i <= 100; i++)
             {
-                CashRecordFormViewModel record = new CashRecordFormViewModel();
-                record.Money = random.Next(minValue:100, maxValue:10000);
-                record.Category = categoryArray[(random.Next(maxValue: 100) % 2)];
-                record.Date = DateTime.Now.AddDays(-i);
+                CashRecordFormViewModel record = new CashRecordFormViewModel
+                {
+                    Money = random.Next(minValue: 100, maxValue: 10000),
+                    Category = categoryArray[(random.Next(maxValue: 100) % 2)],
+                    Date = DateTime.Now.AddDays(-i)
+                };
                 cashRecords.Add(record);
             }
 
             // 將假資料、下拉選單選項都包入ViewModel中
-            CashFormListViewModel cashFormListViewModel = new CashFormListViewModel();
-            cashFormListViewModel.CashRecords = cashRecords;
-            cashFormListViewModel.SelectListItems = selectListItems;
+            CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
+            {
+                CashRecords = cashRecords,
+                SelectListItems = selectListItems
+            };
 ;
             return View(cashFormListViewModel);
         }
