@@ -5,11 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using Homework_SkillTree.Models;
 using Homework_SkillTree.Models.ViewModels;
+using Homework_SkillTree.Services;
 
 namespace Homework_SkillTree.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly CashRecordService _cashRecordService;
+
+        public HomeController()
+        {
+            this._cashRecordService = new CashRecordService();
+        }
+
         public ActionResult Index()
         {
             // 下拉選單選項
@@ -23,27 +31,16 @@ namespace Homework_SkillTree.Controllers
                 selectListItems.Add(new SelectListItem { Text = category });
             }
 
-            // 製作假資料list
-            Random random = new Random();
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
-            for (int i = 1; i <= 100; i++)
-            {
-                CashRecordFormViewModel record = new CashRecordFormViewModel
-                {
-                    Money = random.Next(minValue: 100, maxValue: 10000),
-                    Category = categoryArray[(random.Next(maxValue: 100) % 2)],
-                    Date = DateTime.Now.AddDays(-i)
-                };
-                cashRecords.Add(record);
-            }
+            cashRecords = _cashRecordService.GetAccountBooks();
 
-            // 將假資料、下拉選單選項都包入ViewModel中
+            // 將資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
             {
                 CashRecords = cashRecords,
                 SelectListItems = selectListItems
             };
-;
+
             return View(cashFormListViewModel);
         }
 
