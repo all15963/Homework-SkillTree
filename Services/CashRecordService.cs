@@ -27,6 +27,23 @@ namespace Homework_SkillTree.Services
         }
 
         /// <summary>
+        /// 寫入一筆記帳紀錄
+        /// </summary>
+        /// <param name="cashRecord"></param>
+        /// <returns></returns>
+        public int AddCashRecord(CashRecordFormViewModel cashRecord)
+        {
+            try
+            {
+                return _cashRecordDAO.AddCashRecord(cashRecord);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// 製作假資料list
         /// </summary>
         /// <param name="cashRecords"></param>

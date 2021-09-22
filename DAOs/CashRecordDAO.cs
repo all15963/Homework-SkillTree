@@ -48,5 +48,36 @@ namespace Homework_SkillTree.DAOs
             }
             return result;
         }
+
+        /// <summary>
+        /// 寫入一筆記帳紀錄
+        /// </summary>
+        /// <param name="cashRecord"></param>
+        /// <returns></returns>
+        public int AddCashRecord(CashRecordFormViewModel cashRecord)
+        {
+            int count = 0;
+            const string sqlStatement = @"INSERT INTO AccountBook(Id,Categoryyy,Amounttt,Dateee,Remarkkk) VALUES (@id,@category,@amount,@date,@remark)";
+
+            using (var conn = new SqlConnection(this._AccountBookConnString))
+            {
+                try
+                {
+                    count = conn.Execute(sqlStatement, new
+                    {
+                        id = Guid.NewGuid(),
+                        category = cashRecord.Category,
+                        amount = cashRecord.Money,
+                        date = cashRecord.Date,
+                        remark = cashRecord.Description
+                    });
+                    return count;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

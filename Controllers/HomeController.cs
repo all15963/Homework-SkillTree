@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -26,9 +27,12 @@ namespace Homework_SkillTree.Controllers
             {
                 new SelectListItem {Text = "請選擇", Value = "", Selected = true}
             };
+
+            int index = 0;
             foreach (string category in categoryArray)
             {
-                selectListItems.Add(new SelectListItem { Text = category });
+                selectListItems.Add(new SelectListItem { Text = category, Value = index.ToString() });
+                index++;
             }
 
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
@@ -42,6 +46,27 @@ namespace Homework_SkillTree.Controllers
             };
 
             return View(cashFormListViewModel);
+        }
+
+        /// <summary>
+        /// 記帳表單action
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Index(CashFormListViewModel form)
+        {
+            try
+            {
+                int count = _cashRecordService.AddCashRecord(form.CashRecordForm);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                throw;
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()

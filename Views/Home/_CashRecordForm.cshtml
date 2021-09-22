@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.CashRecordForm.Category, htmlAttributes: new { @class = "col-sm-2 control-label" })
