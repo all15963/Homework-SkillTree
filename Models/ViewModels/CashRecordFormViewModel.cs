@@ -15,6 +15,7 @@ namespace Homework_SkillTree.Models.ViewModels
     {
         [Display(Name = "#")]
         public int Id { get; set; }
+
         [Display(Name = "類別")]
         [Required(ErrorMessage = "請選擇類別!")]
         public string Category { get; set; }
