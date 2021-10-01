@@ -1,0 +1,18 @@
+﻿@model string
+@{
+    string value = string.Empty;
+
+    if (Model == "0")
+    {
+        value = "支出";
+    }
+    else if (Model == "1")
+    {
+        value = "收入";
+    }
+    else
+    {
+        value = Model;
+    }
+}
+@value

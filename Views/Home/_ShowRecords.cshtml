@@ -1,32 +1,19 @@
-﻿@model Homework_SkillTree.Models.ViewModels.CashFormListViewModel
+﻿@model string
 
 @{
     Layout = null;
+
+    string decorate = null;
+    if (Model == "0")
+    {
+        decorate = "text-danger";
+    }
+    else if (Model == "1")
+    {
+        decorate = "text-info";
+    }
 }
 
-<tr>
-    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
-    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
-    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
-    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
-</tr>
-@for (int i = 0; i < Model.CashRecords.Count; i++)
-{
-<tr>
-    <td>@(i+1)</td>
+<td class="@decorate">@Html.DisplayFor(m => m, "Category")</td>
 
-    @* 支出 *@
-    @if (Model.CashRecords[i].Category == "0")
-    {
-        <td class="text-danger">@Model.SelectListItems[Int32.Parse(Model.CashRecords[i].Category) + 1].Text</td>
-    }
-    @* 收入 *@
-    else if (Model.CashRecords[i].Category == "1")
-    {
-        <td class="text-info">@Model.SelectListItems[Int32.Parse(Model.CashRecords[i].Category) + 1].Text</td>
-    }
 
-    <td>@Model.CashRecords[i].Date.ToString("yyyy-MM-dd")</td>
-    <td>@Model.CashRecords[i].Money</td>
-</tr>
-}

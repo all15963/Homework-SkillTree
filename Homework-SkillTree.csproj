@@ -186,8 +186,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_ShowRecords.cshtml" />
     <Content Include="Views\Home\_CashRecordForm.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Category.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Shared\EditorTemplates\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

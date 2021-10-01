@@ -8,7 +8,26 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered table-hover">
-            @Html.Partial("_ShowRecords")
+            <tr>
+                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
+                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
+                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
+                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
+            </tr>
+
+            @{
+                int count = 1;
+            }
+            @foreach (var item in Model.CashRecords)
+            {
+                <tr>
+                    <td>@count</td>
+                    @Html.Partial("_ShowRecords", item.Category)
+                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@item.Money</td>
+                </tr>
+                count++;
+            }
         </table>
     </div>
 </div>
