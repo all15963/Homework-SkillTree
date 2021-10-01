@@ -33,14 +33,7 @@ namespace Homework_SkillTree.Services
         /// <returns></returns>
         public int AddCashRecord(CashRecordFormViewModel cashRecord)
         {
-            try
-            {
-                return _cashRecordDAO.AddCashRecord(cashRecord);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return _cashRecordDAO.AddCashRecord(cashRecord);
         }
 
         /// <summary>

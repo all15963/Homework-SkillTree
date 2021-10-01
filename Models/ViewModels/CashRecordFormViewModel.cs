@@ -17,7 +17,7 @@ namespace Homework_SkillTree.Models.ViewModels
         public int Id { get; set; }
 
         [Display(Name = "類別")]
-        [Required(ErrorMessage = "請選擇類別!")]
+        [Required(ErrorMessage = "請選擇{0}!")]
         public string Category { get; set; }
 
         [Display(Name = "金額")]
@@ -27,11 +27,12 @@ namespace Homework_SkillTree.Models.ViewModels
 
         [Display(Name = "日期")]
         [Required(ErrorMessage = "請填寫日期!")]
+        [Range(typeof(DateTime), "1753/1/1", "2021/9/22", ErrorMessage = "{0}區間必須介於{1}到{2}之間!")]
         public DateTime Date { get; set; }
 
         [Display(Name = "備註")]
         [Required(ErrorMessage = "請填寫備註!")]
-        [StringLength(100, ErrorMessage = "字數不得超過100字!")]
+        [StringLength(100, ErrorMessage = "{0}不得超過{1}字!")]
         public string Description { get; set; }
     }
 }

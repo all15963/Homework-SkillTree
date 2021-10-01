@@ -56,14 +56,17 @@ namespace Homework_SkillTree.Controllers
         [HttpPost]
         public ActionResult Index(CashFormListViewModel form)
         {
-            try
+            if (ModelState.IsValid)
             {
-                int count = _cashRecordService.AddCashRecord(form.CashRecordForm);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                throw;
+                try
+                {
+                    int count = _cashRecordService.AddCashRecord(form.CashRecordForm);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    throw;
+                }
             }
 
             return RedirectToAction("Index");
