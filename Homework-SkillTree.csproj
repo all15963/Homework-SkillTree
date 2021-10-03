@@ -187,6 +187,7 @@
     <Content Include="Views\Home\_ShowRecords.cshtml" />
     <Content Include="Views\Home\_CashRecordForm.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Category.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Shared\EditorTemplates\" />

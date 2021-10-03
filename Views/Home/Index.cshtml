@@ -23,7 +23,7 @@
                 <tr>
                     <td>@count</td>
                     @Html.Partial("_ShowRecords", item.Category)
-                    <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                    <td>@Html.DisplayFor(m => m.CashRecords[count - 1].Date)</td>
                     <td>@item.Money</td>
                 </tr>
                 count++;
