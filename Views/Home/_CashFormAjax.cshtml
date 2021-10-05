@@ -1,0 +1,8 @@
+﻿@model Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel
+
+<tr>
+    <td>@ViewData["recordCount"]</td>
+    @Html.Partial("_ShowRecords", Model.Category)
+    <td>@Html.DisplayFor(m => m.Date)</td>
+    <td>@Model.Money</td>
+</tr>

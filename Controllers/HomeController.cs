@@ -56,11 +56,13 @@ namespace Homework_SkillTree.Controllers
         [HttpPost]
         public ActionResult Index(CashFormListViewModel form)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAjaxRequest() && ModelState.IsValid)
             {
                 try
                 {
-                    int count = _cashRecordService.AddCashRecord(form.CashRecordForm);
+                    _cashRecordService.AddCashRecord(form.CashRecordForm);
+                    ViewData["recordCount"] = _cashRecordService.GetAccountBooks().Count;
+                    return PartialView("_CashFormAjax", form.CashRecordForm);
                 }
                 catch (Exception e)
                 {

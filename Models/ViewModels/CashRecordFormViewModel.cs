@@ -27,7 +27,7 @@ namespace Homework_SkillTree.Models.ViewModels
 
         [Display(Name = "日期")]
         [Required(ErrorMessage = "請填寫日期!")]
-        [Range(typeof(DateTime), "1753/1/1", "2021/9/22", ErrorMessage = "{0}區間必須介於{1}到{2}之間!")]
+        //[Range(typeof(DateTime), "1753/1/1", "2021/9/22", ErrorMessage = "{0}區間必須介於{1}到{2}之間!")]
         public DateTime Date { get; set; }
 
         [Display(Name = "備註")]

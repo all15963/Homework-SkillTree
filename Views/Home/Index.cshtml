@@ -8,26 +8,28 @@
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered table-hover">
-            <tr>
-                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
-                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
-                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
-                <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
-            </tr>
-
-            @{
-                int count = 1;
-            }
-            @foreach (var item in Model.CashRecords)
-            {
+            <tbody id="ajaxPanel">
                 <tr>
-                    <td>@count</td>
-                    @Html.Partial("_ShowRecords", item.Category)
-                    <td>@Html.DisplayFor(m => m.CashRecords[count - 1].Date)</td>
-                    <td>@item.Money</td>
+                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
+                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
+                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
+                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
                 </tr>
-                count++;
-            }
+
+                @{
+                    int count = 1;
+                }
+                @foreach (var item in Model.CashRecords)
+                {
+                    <tr>
+                        <td>@count</td>
+                        @Html.Partial("_ShowRecords", item.Category)
+                        <td>@Html.DisplayFor(m => m.CashRecords[count - 1].Date)</td>
+                        <td>@item.Money</td>
+                    </tr>
+                    count++;
+                }
+            </tbody>
         </table>
     </div>
 </div>
