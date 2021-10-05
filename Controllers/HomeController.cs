@@ -87,5 +87,15 @@ namespace Homework_SkillTree.Controllers
 
             return View();
         }
+
+        public ActionResult DateValid(CashFormListViewModel form)
+        {
+            if (form.CashRecordForm.Date > DateTime.Today)
+            {
+                return Json($"日期不能比{DateTime.Today}大!", JsonRequestBehavior.AllowGet);
+            }
+            
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
     }
 }

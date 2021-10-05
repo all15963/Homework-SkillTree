@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Homework_SkillTree.Models.ViewModels
 {
@@ -21,13 +22,13 @@ namespace Homework_SkillTree.Models.ViewModels
         public string Category { get; set; }
 
         [Display(Name = "金額")]
-        [Required(ErrorMessage ="請填寫金額!")]
+        [Required(ErrorMessage ="請填寫{0}!")]
         [Range(1, Int32.MaxValue, ErrorMessage = "{0}必須為正整數!")]
         public int Money { get; set; }
 
         [Display(Name = "日期")]
-        [Required(ErrorMessage = "請填寫日期!")]
-        //[Range(typeof(DateTime), "1753/1/1", "2021/9/22", ErrorMessage = "{0}區間必須介於{1}到{2}之間!")]
+        [Required(ErrorMessage = "請填寫{0}!")]
+        [Remote("DateValid", "Home")]
         public DateTime Date { get; set; }
 
         [Display(Name = "備註")]
