@@ -4,7 +4,11 @@
     Layout = null;
 }
 
-@using (Ajax.BeginForm("Index", "Home", new AjaxOptions { UpdateTargetId = "ajaxPanel", InsertionMode = InsertionMode.InsertAfter }, htmlAttributes: new { @class = "form-horizontal" }))
+@using (Ajax.BeginForm(null, null, new AjaxOptions { 
+    Url = Url.Action("Index", "Home"), 
+    UpdateTargetId = "ajaxPanel", 
+    InsertionMode = InsertionMode.InsertAfter },
+    new { @class = "form-horizontal" }))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.CashRecordForm.Category, htmlAttributes: new { @class = "col-sm-2 control-label" })
