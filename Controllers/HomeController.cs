@@ -54,15 +54,15 @@ namespace Homework_SkillTree.Controllers
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Index(CashFormListViewModel form)
+        public ActionResult Index([Bind(Prefix = "CashRecordForm")] CashRecordFormViewModel form)
         {
             if (Request.IsAjaxRequest() && ModelState.IsValid)
             {
                 try
                 {
-                    _cashRecordService.AddCashRecord(form.CashRecordForm);
+                    _cashRecordService.AddCashRecord(form);
                     ViewData["recordCount"] = _cashRecordService.GetAccountBooks().Count;
-                    return PartialView("_CashFormAjax", form.CashRecordForm);
+                    return PartialView("_CashFormAjax", form);
                 }
                 catch (Exception e)
                 {
@@ -88,11 +88,16 @@ namespace Homework_SkillTree.Controllers
             return View();
         }
 
-        public ActionResult DateValid(CashFormListViewModel form)
+        /// <summary>
+        /// 給Remote驗證日期是否大於今天
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public ActionResult DateValid([Bind(Prefix = "CashRecordForm.Date")] DateTime date)
         {
-            if (form.CashRecordForm.Date > DateTime.Today)
+            if (date > DateTime.Today)
             {
-                return Json($"日期不能比{DateTime.Today}大!", JsonRequestBehavior.AllowGet);
+                return Json($"日期不能比今天日期 {DateTime.Today.ToString("yyyy/MM/dd")} 大!", JsonRequestBehavior.AllowGet);
             }
             
             return Json(true, JsonRequestBehavior.AllowGet);
