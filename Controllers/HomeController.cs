@@ -19,6 +19,7 @@ namespace Homework_SkillTree.Controllers
             this._cashRecordService = new CashRecordService();
         }
 
+        [Route("skilltree")]
         public ActionResult Index()
         {
             // 下拉選單選項
