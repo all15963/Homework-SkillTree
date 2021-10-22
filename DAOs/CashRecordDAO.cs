@@ -49,6 +49,24 @@ namespace Homework_SkillTree.DAOs
             return result;
         }
 
+        public List<CashRecordFormViewModel> GetCashRecordsByDate(int? year, int? month)
+        {
+            MappingColumn();
+
+            var result = new List<CashRecordFormViewModel>();
+            const string sqlStatement = @"SELECT Categoryyy,Amounttt,Dateee,Remarkkk FROM AccountBook
+                WHERE year(Dateee)=@year AND month(Dateee)=@month";
+
+            using (var conn = new SqlConnection(this._AccountBookConnString))
+            {
+                result = conn.Query<CashRecordFormViewModel>(sqlStatement, new {
+                    year = year,
+                    month = month
+                }).ToList();
+            }
+            return result;
+        }
+
         /// <summary>
         /// 寫入一筆記帳紀錄
         /// </summary>

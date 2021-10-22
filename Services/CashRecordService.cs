@@ -22,8 +22,12 @@ namespace Homework_SkillTree.Services
         /// <returns></returns>
         public List<CashRecordFormViewModel> GetAccountBooks()
         {
-            List<CashRecordFormViewModel> cashRecords = _cashRecordDAO.GetCashRecords();
-            return cashRecords;
+            return _cashRecordDAO.GetCashRecords();
+        }
+
+        public List<CashRecordFormViewModel> GetAccountBooksByDate(int? year, int? month)
+        {
+            return _cashRecordDAO.GetCashRecordsByDate(year, month);
         }
 
         /// <summary>

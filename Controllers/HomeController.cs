@@ -19,8 +19,8 @@ namespace Homework_SkillTree.Controllers
             this._cashRecordService = new CashRecordService();
         }
 
-        [Route("skilltree")]
-        public ActionResult Index()
+        [Route("skilltree/{year:int?}/{month:int:range(1,12)?}")]
+        public ActionResult Index(int? year, int? month)
         {
             // 下拉選單選項
             string[] categoryArray = new string[] { "支出", "收入" };
@@ -37,7 +37,17 @@ namespace Homework_SkillTree.Controllers
             }
 
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
-            cashRecords = _cashRecordService.GetAccountBooks();
+
+            if (year != null && month != null)
+            {
+                cashRecords = _cashRecordService.GetAccountBooksByDate(year, month);
+                ViewData["SearchMode"] = true;
+            }
+            else
+            {
+                cashRecords = _cashRecordService.GetAccountBooks();
+                ViewData["SearchMode"] = false;
+            }
 
             // 將資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
