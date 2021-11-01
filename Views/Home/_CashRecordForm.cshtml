@@ -4,10 +4,10 @@
     Layout = null;
 }
 
-@using (Ajax.BeginForm(null, null, new AjaxOptions { 
-    Url = Url.Action("Index", "Home"), 
-    UpdateTargetId = "ajaxPanel", 
-    InsertionMode = InsertionMode.InsertAfter },
+@using (Ajax.BeginForm(null, null, new AjaxOptions {
+    Url = Url.Action("Index", "Home", new { year = ViewContext.RouteData.Values["year"], month = ViewContext.RouteData.Values["month"] }),
+    UpdateTargetId = "ajaxPanel",
+    InsertionMode = InsertionMode.Replace },
     new { @class = "form-horizontal" }))
 {
     <div class="form-group">

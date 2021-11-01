@@ -38,16 +38,9 @@ namespace Homework_SkillTree.Controllers
 
             List<CashRecordFormViewModel> cashRecords = new List<CashRecordFormViewModel>();
 
-            if (year != null && month != null)
-            {
-                cashRecords = _cashRecordService.GetAccountBooksByDate(year, month);
-                ViewData["SearchMode"] = true;
-            }
-            else
-            {
-                cashRecords = _cashRecordService.GetAccountBooks();
-                ViewData["SearchMode"] = false;
-            }
+            cashRecords = (year != null && month != null)
+                ? _cashRecordService.GetAccountBooksByDate(year, month)
+                : _cashRecordService.GetAccountBooks();
 
             // 將資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
@@ -64,16 +57,19 @@ namespace Homework_SkillTree.Controllers
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [Route("skilltree/{year:int?}/{month:int:range(1,12)?}")]
         [HttpPost]
-        public ActionResult Index([Bind(Prefix = "CashRecordForm")] CashRecordFormViewModel form)
+        public ActionResult Index([Bind(Prefix = "CashRecordForm")] CashRecordFormViewModel form, int? year, int? month)
         {
             if (Request.IsAjaxRequest() && ModelState.IsValid)
             {
                 try
                 {
                     _cashRecordService.AddCashRecord(form);
-                    ViewData["recordCount"] = _cashRecordService.GetAccountBooks().Count;
-                    return PartialView("_CashFormAjax", form);
+                    var result = (year != null && month != null)
+                        ? _cashRecordService.GetAccountBooksByDate(year, month)
+                        : _cashRecordService.GetAccountBooks();
+                    return PartialView("_CashFormAjax", result);
                 }
                 catch (Exception e)
                 {

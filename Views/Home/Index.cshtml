@@ -1,27 +1,25 @@
 ﻿@model Homework_SkillTree.Models.ViewModels.CashFormListViewModel
 @{
     ViewBag.Title = "Home Page";
-    bool searchMode = (bool)ViewData["SearchMode"];
 }
 
-@if (searchMode == false)
-{
-    <div class="well">
-        @Html.Partial("_CashRecordForm")
-    </div>
-}
+<div class="well">
+    @Html.Partial("_CashRecordForm")
+</div>
 
 <div class="row">
     <div class="col-md-12">
         <table class="table table-bordered table-hover">
-            <tbody id="ajaxPanel">
+            <thead>
                 <tr>
                     <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
                     <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
                     <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
                     <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
                 </tr>
+            </thead>
 
+            <tbody id="ajaxPanel">
                 @{
                     int count = 1;
                 }

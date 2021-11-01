@@ -1,8 +1,16 @@
-﻿@model Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel
+﻿@model IEnumerable<Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel>
 
-<tr>
-    <td>@ViewData["recordCount"]</td>
-    @Html.Partial("_ShowRecords", Model.Category)
-    <td>@Html.DisplayFor(m => m.Date)</td>
-    <td>@Model.Money</td>
-</tr>
+@{
+    Layout = null;
+    int count = 1;
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@count</td>
+        @Html.Partial("_ShowRecords", item.Category)
+        <td>@Html.DisplayFor(m => m.ToList()[count - 1].Date)</td>
+        <td>@item.Money</td>
+    </tr>
+    count++;
+}
