@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Homework_SkillTree.Models;
 using Homework_SkillTree.Models.ViewModels;
 using Homework_SkillTree.Services;
+using X.PagedList;
 
 namespace Homework_SkillTree.Controllers
 {
@@ -20,7 +21,7 @@ namespace Homework_SkillTree.Controllers
         }
 
         [Route("skilltree/{year:int?}/{month:int:range(1,12)?}")]
-        public ActionResult Index(int? year, int? month)
+        public ActionResult Index(int? year, int? month, int? page)
         {
             // 下拉選單選項
             string[] categoryArray = new string[] { "支出", "收入" };
@@ -42,10 +43,15 @@ namespace Homework_SkillTree.Controllers
                 ? _cashRecordService.GetAccountBooksByDate(year, month)
                 : _cashRecordService.GetAccountBooks();
 
+            var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+            var onePageOfRecords = cashRecords.ToPagedList(pageNumber, 20); // will only contain 25 products max because of the pageSize
+
+            //ViewBag.OnePageOfProducts = onePageOfProducts;
+
             // 將資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
             {
-                CashRecords = cashRecords,
+                CashRecords = onePageOfRecords,
                 SelectListItems = selectListItems
             };
 
