@@ -11,38 +11,7 @@
 </div>
 
 <div id="ajaxPanel" class="row">
-    <div class="col-md-12">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Id)</th>
-                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Category)</th>
-                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Date)</th>
-                    <th>@Html.DisplayNameFor(m => m.CashRecordForm.Money)</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @{
-                    var number = Model.CashRecords.PageNumber;
-                    int count = 1;
-                }
-                @foreach (var item in Model.CashRecords)
-                {
-                    <tr>
-                        <td>@((number - 1) * 20 + count)</td>
-                        @Html.Partial("_ShowRecords", item.Category)
-                        <td>@Html.DisplayFor(m => m.CashRecords[count - 1].Date)</td>
-                        <td>@item.Money</td>
-                    </tr>
-                    count++;
-                }
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-12">
-        @Html.PagedListPager(Model.CashRecords, page => Url.Action("Index", new { page }))
-    </div>
+    @Html.Partial("_CashFormAjax", Model.CashRecords)
 </div>
 
 @section scripts{
