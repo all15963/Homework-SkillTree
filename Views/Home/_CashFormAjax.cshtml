@@ -1,16 +1,38 @@
-﻿@model IEnumerable<Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc;
+@model IPagedList<Homework_SkillTree.Models.ViewModels.CashRecordFormViewModel>
 
 @{
     Layout = null;
+    int number = Model.PageNumber;
     int count = 1;
 }
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@count</td>
-        @Html.Partial("_ShowRecords", item.Category)
-        <td>@Html.DisplayFor(m => m.ToList()[count - 1].Date)</td>
-        <td>@item.Money</td>
-    </tr>
-    count++;
-}
+
+
+<div class="col-md-12">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(m => m[0].Id)</th>
+                <th>@Html.DisplayNameFor(m => m[0].Category)</th>
+                <th>@Html.DisplayNameFor(m => m[0].Date)</th>
+                <th>@Html.DisplayNameFor(m => m[0].Money)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@((number - 1) * 20 + count)</td>
+                    @Html.Partial("_ShowRecords", item.Category)
+                    <td>@Html.DisplayFor(m => m[count - 1].Date)</td>
+                    <td>@item.Money</td>
+                </tr>
+                count++;
+            }
+        </tbody>
+    </table>
+</div>
+<div class="col-md-12">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

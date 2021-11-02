@@ -5,7 +5,10 @@
 }
 
 @using (Ajax.BeginForm(null, null, new AjaxOptions {
-    Url = Url.Action("Index", "Home", new { year = ViewContext.RouteData.Values["year"], month = ViewContext.RouteData.Values["month"] }),
+    Url = Url.Action("Index", "Home", 
+    new { year = ViewContext.RouteData.Values["year"], 
+        month = ViewContext.RouteData.Values["month"], 
+        page = Model.CashRecords.PageNumber}),
     UpdateTargetId = "ajaxPanel",
     InsertionMode = InsertionMode.Replace },
     new { @class = "form-horizontal" }))

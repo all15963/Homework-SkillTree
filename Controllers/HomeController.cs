@@ -62,7 +62,7 @@ namespace Homework_SkillTree.Controllers
         /// <returns></returns>
         [Route("skilltree/{year:int?}/{month:int:range(1,12)?}")]
         [HttpPost]
-        public ActionResult Index([Bind(Prefix = "CashRecordForm")] CashRecordFormViewModel form, int? year, int? month)
+        public ActionResult Index([Bind(Prefix = "CashRecordForm")] CashRecordFormViewModel form, int? year, int? month, int? page)
         {
             if (Request.IsAjaxRequest() && ModelState.IsValid)
             {
@@ -72,7 +72,10 @@ namespace Homework_SkillTree.Controllers
                     var result = (year != null && month != null)
                         ? _cashRecordService.GetAccountBooksByDate(year, month)
                         : _cashRecordService.GetAccountBooks();
-                    return PartialView("_CashFormAjax", result);
+
+                    var pageNumber = page ?? 1;
+                    var onePageOfRecords = result.ToPagedList(pageNumber, 20);
+                    return PartialView("_CashFormAjax", onePageOfRecords);
                 }
                 catch (Exception e)
                 {
