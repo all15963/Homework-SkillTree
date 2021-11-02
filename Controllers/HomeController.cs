@@ -45,9 +45,6 @@ namespace Homework_SkillTree.Controllers
 
             var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
             var onePageOfRecords = cashRecords.ToPagedList(pageNumber, 20); // will only contain 25 products max because of the pageSize
-
-            //ViewBag.OnePageOfProducts = onePageOfProducts;
-
             // 將資料、下拉選單選項都包入ViewModel中
             CashFormListViewModel cashFormListViewModel = new CashFormListViewModel
             {

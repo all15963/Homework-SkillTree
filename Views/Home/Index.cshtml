@@ -24,12 +24,13 @@
 
             <tbody id="ajaxPanel">
                 @{
+                    var number = Model.CashRecords.PageNumber;
                     int count = 1;
                 }
                 @foreach (var item in Model.CashRecords)
                 {
                     <tr>
-                        <td>@count</td>
+                        <td>@((number - 1) * 10 + count)</td>
                         @Html.Partial("_ShowRecords", item.Category)
                         <td>@Html.DisplayFor(m => m.CashRecords[count - 1].Date)</td>
                         <td>@item.Money</td>
