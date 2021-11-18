@@ -1,18 +1,21 @@
 ﻿@model string
 @{
     string value = string.Empty;
+    string textColor = string.Empty;
 
     if (Model == "0")
     {
         value = "支出";
+        textColor = "text-danger";
     }
     else if (Model == "1")
     {
         value = "收入";
+        textColor = "text-info";
     }
     else
     {
         value = Model;
     }
 }
-@value
+<td class="@textColor">@value</td>
