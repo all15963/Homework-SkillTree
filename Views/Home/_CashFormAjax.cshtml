@@ -22,12 +22,12 @@
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>@((number - 1) * 20 + count)</td>
-                @Html.DisplayFor(modelItem => item.Category, "Category")
-                <td>@Html.DisplayFor(modelItem => item.Date)</td>
-                <td>@item.Money</td>
-            </tr>
+                <tr>
+                    <td>@((number - 1) * 20 + count)</td>
+                    @Html.DisplayFor(modelItem => item.Category, "Category")
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@item.Money</td>
+                </tr>
                 count++;
             }
         </tbody>
